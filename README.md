@@ -1,10 +1,27 @@
 # Github and Git
 
+![git_def](https://swcarpentry.github.io/git-novice/fig/phd101212s.png) 
+
+We have all been here, taken by the [Software Carpentry Version Control lesson](https://swcarpentry.github.io/git-novice/01-basics.html).
+
+This lesson of the Data Science Tapas Series we are going to explore Git and GitHub, essential tools for the modern scientist. Likely, if you have to work with code or have to use the computer, you may have found yourself in a GitHub repository looking at someone else's code (or on [Stack Overflow](https://stackoverflow.com/)) addressing the issue you are encountering. The initial concept of Git was to give coders a way to save and [branch](https://www.atlassian.com/git/tutorials/using-branches) their code, and later on GitHub gave some of the fundamentals functionalities that allow code to easily be shared with collaborators as well as a myriad of other functionalities.
+
+Here, we are going to go cover some of these basic functionalities, in an effort to help you understand how Git and GitHub can be essential to your work.
+
 ## Agenda
 
-- [Git vs GitHub overview](#)
+- [Git vs GitHub overview](#git-vs-github-overview)
+- [Version Control]()
+	- [Branches]()
+- [Key Git Features]()
+	- [Issues]()
+	- [Pull Requests]()
+- [Connecting Git to GitHub]()
+- [The Git Life Cycle]()
+- [Definitions]()
 
 ## Git vs GitHub Overview
+
 
 - **Git**: 
     - First developed in 2005, git is a version control software that allows users to make changes and add versions to their code.
@@ -24,8 +41,6 @@
 ## Introducing GitHub
 
 Since we are talking about making science accessible, we invite you to use GitHub to save and share your code. Please start by creating a GitHub account at https://github.com/.
-<br/>
-<br/>
 
 #### User Profile
 
