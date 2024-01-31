@@ -20,10 +20,11 @@ Here, we are going to go cover some of these basic functionalities, in an effort
 	- [History](#history)
 	- [Forks, Pull Requests and Issues](#forks-pull-requests-and-issues)
 - [Version Control](#version-control)
-	- [Branches]()
-- [Connecting Git to GitHub]()
-- [The Git Life Cycle]()
-- [Definitions]()
+	- [Branches](#branches)
+- [Connecting Git to GitHub](#connecting-git-and-github)
+	- [Generating and Adding SSH-Keys](#generating-and-adding-ssh-keys)
+- [Pushing Changes From Your Computer](#pushing-changes-from-your-computer)
+- [Resources and Closing Remarks](#resources-and-closing-remarks)
 
 ---
 
@@ -169,6 +170,164 @@ You can now see the updated list of all your branches.
 
 You can now use this new branch to create changes you are not yet ready to put in your main branch. Once ready, you can then **merge** your changes to the main branch (and if neccessary, delete your branch).
 
+---
 
+## Connecting Git and GitHub
+
+So far, we've covered GitHub, the online platform that allows you to share code. In order for you to modify this code locally, you will need to install Git. The official GitHub documentation is a great guide on the topic: https://github.com/git-guides/install-git. Select the correct OS and once installed, you will need to connect Git and GitHub.
+
+You can do so in 2 ways: using Tokens or using Secure Shell (SSH). Although there have been rumors of Tokens going away, you can still use these for your work -- however, SSH seems to be recommended and therefore covered in the next section. You will need access to a Terminal or Command Line Interface (CLI) for this step.
+
+### Generating and adding SSH-keys
+
+To create an SSH key pair use the followinhg command where the -t option specifies which type of algorithm to use and -C attaches a comment to the key. In this case, ed25519 is the algorithm used to create the safe key
+
+```
+ssh-keygen -t ed25519 -C "<your email>"
+```
+
+The Terminal is then going to prompt a number of questions: where to save, name, passphrase and confirmation. We suggest to store the keys in their standard location.
+
+Once created, you should see something similar to this
+
+```
+Your identification has been saved in /c/Users/<your username>/.ssh/id_ed25519
+Your public key has been saved in /c/Users/<your username>/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:SMSPIStNyA00KPxuYu94KpZgRAYjgt9g4BA4kFy3g1o vlad@tran.sylvan.ia
+The key's randomart image is:
++--[ED25519 256]--+
+|^B== o.          |
+|%*=.*.+          |
+|+=.E =.+         |
+| .=.+.o..        |
+|....  . S        |
+|.+ o             |
+|+ =              |
+|.o.o             |
+|oo+.             |
++----[SHA256]-----+
+```
+
+This is the indicator that your key was created successfully. The next step is copy the key to GitHub.
+
+First, we need to copy the public key. Be sure to include the .pub at the end, otherwise you’re looking at the private key. Likely, your key is in `~/.ssh/` in MacOS/Unix or `/c/<your username>/.ssh/` .
+
+The `~/.ssh` location is where your ssh keys are stored. The following command is going to output the contents of the key:
+
+```
+cat ~/.ssh/id_ed25519.pub
+```
+
+The output will be something similar to
+
+```
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDmRA3d51X0uu9wXek559gfn6UFNF69yZjChyBIU2qKI <youremail@arizona.edu>
+```
+
+Copy the output and go to GitHub.
+
+On GitHub:
+
+1. click on your profile icon in the top right corner to get the drop-down menu. 
+2. Click “Settings,” then on the settings page, click “SSH and GPG keys,” on the left side “Account settings” menu. 
+3. Click the “New SSH key” button on the right side. 
+4. add the title (e.g., "Michele's Lab Laptop”), paste your SSH key into the field, and click the “Add SSH key” to complete the setup.
+
+Now test connectivity on your computer by doing 
+
+```
+ssh -T git@github.com
+```
+
+You should receive something simiar to
+
+```
+Hi <user>! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+If you received this then your computer is successfully connected to GitHub and can add local changes!
 
 ---
+
+## Pushing Changes From Your Computer
+
+Adding code locally is a more complex than adding code through the web page, but it allows for better control on what files you commit.
+
+To add or modify code locally, you need to clone the repository on your computer. You can then clone the repository by clicking on the Code button, and copying the link shown
+
+![img13](https://foss.cyverse.org/assets/git_4.png)
+
+**Since we have connected using SSH, make sure to copy the link under SSH**.
+
+On your machine, open a terminal window and type the following command:
+
+```
+git clone <repository address>     # Replace <repository address> with the link you copied such as below
+
+$ git clone https://github.com/CosiMichele/3_git_tutorial.git
+Cloning into 'foss23_git_tutorial'...
+remote: Enumerating objects: 13, done.
+remote: Counting objects: 100% (13/13), done.
+remote: Compressing objects: 100% (12/12), done.
+remote: Total 13 (delta 5), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (13/13), 14.47 KiB | 90.00 KiB/s, done.
+```
+
+Your code is now available to you on your machine, and you can add and modify files as needed.
+
+Once you have modified your code locally, you still have to **push** it to the repository. Prior to doing so there are a couple of steps you should do:
+
+- `git status``: it checkes on the status of the repository (files that have been modified, deleted, added - from either local or in the online repository)
+- `git pull``: it checks and "pulls" changes from the online repository to your local repository. It ensures that you are always updated on the repository files and it can save a lot of time in case there are clashing commits from different users.
+
+To do so:
+
+**Add** all fiels you have modified and want to commit:
+
+```
+$ git add .    #  "." (period) stands for all files in a folder
+```
+
+**Commit** the changes. When committing changes, you have to add a message (in quotation marks) with the `-m` flag. This message is a concise and descriptive few words about what you did:
+
+```
+$ git commit -m "locally added and modified files"
+[main 05f0ef6] locally added and modified files
+ 2 files changed, 11 insertions(+), 1 deletion(-)
+ create mode 100644 file_from_local.md
+``````
+
+**Push** your changes with push:
+```
+$ git push
+Enumerating objects: 6, done.
+Counting objects: 100% (6/6), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 585 bytes | 32.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0)
+To https://github.com/CosiMichele/foss22_git_tutorial.git
+   b649de3..05f0ef6  main -> main
+```
+
+You should now be able to see your changes online!
+
+![img14](https://foss.cyverse.org/assets/git_9.png)
+
+---
+
+## Resources and Closing Remarks
+
+We have come to an end of the workshop. We have learned:
+
+- The differences of Git and GitHub
+- Navigating the GitHub platform
+- GitHub features such as Repostories, History, Forks, Pull Requests and Issues
+- What Version Control is and the Branching functionality
+- How to connect your machine with GitHub and adding changes from your computer 
+
+Here are a number of resources you may want to check out:
+- [The Carpentries Git/GitHub lesson](https://swcarpentry.github.io/git-novice/index.html)
+- The FOSS lesson on Shell, Git/Github ([here](https://foss.cyverse.org/00_basics/)) and Version control ([here](https://foss.cyverse.org/05_version_control/))
+- [The GitHub Desktop App](https://desktop.github.com/)
