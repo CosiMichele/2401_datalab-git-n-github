@@ -8,6 +8,8 @@ This lesson of the Data Science Tapas Series we are going to explore Git and Git
 
 Here, we are going to go cover some of these basic functionalities, in an effort to help you understand how Git and GitHub can be essential to your work.
 
+---
+
 ## Agenda
 
 - [Git vs GitHub overview](#git-vs-github-overview)
@@ -17,11 +19,13 @@ Here, we are going to go cover some of these basic functionalities, in an effort
 	- [Adding Code to GitHub](#adding-and-modifying-code-in-github)
 	- [History](#history)
 	- [Forks, Pull Requests and Issues](#forks-pull-requests-and-issues)
-- [Version Control]()
+- [Version Control](#version-control)
 	- [Branches]()
 - [Connecting Git to GitHub]()
 - [The Git Life Cycle]()
 - [Definitions]()
+
+---
 
 ## Git vs GitHub Overview
 
@@ -53,6 +57,8 @@ On your personal page, you will be able to add a picture, a description of yours
 Check out [this profile](https://github.com/Gchism94) for a fancier example. 
 
 Outside of its more social media-like dashboard, GitHub has a number of useful features for working with and sharing code. 
+
+---
 
 ## Key GitHub Features 
 
@@ -134,5 +140,35 @@ One does so by "Copying" your repository, with an action called **Forking**. For
 **But what if I don't want to Fork the code but still want to contribute? Issues!**
 
 If you want to contribute to someone's code, let's say you spotted a bug for example, you can open an **Issue**. Issues are also available at the top of your Repository's menu. Issues can be created by anyone, and these are meant to notify the Repository's maintainer of problems, requests and conversations regarding the code and content.
+
+---
+
+## Version Control
+
+It was mentioned early on that Git and GitHub are incredibly important tools for code management. This is called **Version Control** (VC). We have seen that we are able to view the History of each Repository, and it is through this History that we can reset the Repository to that specific commit. 
+
+### Branches
+
+Additionally, we also have the power to work on the same piece of code, but on different levels. We call these levels **Branches**. Branching allows you to develop your code whilst in a contained environment separate from your main environment. You can view the list and number of branches on the top of your repository.
+
+![img9](https://content.cdntwrk.com/files/aHViPTg1NDMzJmNtZD1pdGVtZWRpdG9yaW1hZ2UmZmlsZW5hbWU9aXRlbWVkaXRvcmltYWdlXzYzOTkwY2I4OWU5YTUuanBnJnZlcnNpb249MDAwMCZzaWc9OWJjZTA5NDIxNzY4MWFhZjYyNmEwNWNhYmI1YTUzMWQ%253D)
+
+**Why Branches?**
+
+Branches allow you to add/remove/change exisiting code independently from your main branch. This code can include alphas, betas and different versions of your code. Branches can be used to develop documentation or include different functionalitiets focused on Operating Systems and/or clusters and job schedulers. You can view your branches by clicking the **branch** button on the top of your repository.
+
+![img10](https://foss.cyverse.org/assets/git_10.png)
+
+Here you can view your current branches and create new ones. Select **New Branch** on the top right. Give the new branch a name of your choice, select the source of code (in this case the only source of code can be the main branch) and select Create branch.
+
+![img11](https://foss.cyverse.org/assets/git_11.png)
+
+You can now see the updated list of all your branches.
+
+![img12](https://foss.cyverse.org/assets/git_13.png)
+
+You can now use this new branch to create changes you are not yet ready to put in your main branch. Once ready, you can then **merge** your changes to the main branch (and if neccessary, delete your branch).
+
+
 
 ---
